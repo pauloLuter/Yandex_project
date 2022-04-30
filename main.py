@@ -3,6 +3,7 @@ import pymorphy2
 from datetime import datetime
 from telegram.ext import Updater, MessageHandler, Filters, CommandHandler, CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+import random
 
 # Запускаем логгирование
 logging.basicConfig(
@@ -16,6 +17,12 @@ TOKEN = '5324119937:AAE2Oheh3gw7v-Brh64iFuWGkhPg4o6xPiU'
 d = {'информатика': '20.06.2022', 'биология': '14.06.2022', 'география': '26.05.2022', 'литература': '26.05.2022',
      'химия': '26.05.2022', 'русский': '30.05.2022', 'математика': '03.06.2022', 'история': '06.06.2022', 'физика': '06.06.2022',
      'обществознание': '09.06.2022'}
+
+photo = ['https://jokesland.net.ru/pc/motivatory_20/1.jpg',
+         'https://kaifolog.ru/uploads/posts/2010-06/1275372822_004.jpg',
+         'https://i.pinimg.com/564x/bb/20/58/bb2058edd627108b2855c72d655b5130.jpg',
+         'https://cs10.pikabu.ru/images/big_size_comm/2020-11_5/1606069357178316867.png',]
+
 morph = pymorphy2.MorphAnalyzer()
 
 
@@ -63,22 +70,11 @@ def button(update, context):
     variant = query.data
     query.answer()
     if variant == '1':
-        query.edit_message_text(text=f"Выбранный вариант: {variant}")
+        query.edit_message_text(text=f"{photo[random.randint(0, 3)]}")
     elif variant == '2':
         query.edit_message_text(text=f"На этом сайте много материалов для подготовки: {'https://ege.sdamgia.ru/'}")
     else:
         query.edit_message_text(text="Какой экзамен ты будешь сдавать?")
-#     con = sqlite3.connect("reactions.sqlite")
-#         cur = con.cursor()
-#         result = cur.execute(f"""SELECT result FROM results
-#                     WHERE topic=(SELECT id FROM topics WHERE topic = '{topic}'
-#                     AND reagent=(SELECT id FROM reagents WHERE reagent =
-#                     '{reagent}'))""").fetchall()
-#         if len(result) == 0:
-#             self.result.setText('Реакция не идет')
-#         else:
-#             self.result.setText(result[0][0])
-#         con.close()
 
 
 def main():
