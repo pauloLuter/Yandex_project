@@ -68,6 +68,17 @@ def button(update, context):
         query.edit_message_text(text=f"На этом сайте много материалов для подготовки: {'https://ege.sdamgia.ru/'}")
     else:
         query.edit_message_text(text="Какой экзамен ты будешь сдавать?")
+#     con = sqlite3.connect("reactions.sqlite")
+#         cur = con.cursor()
+#         result = cur.execute(f"""SELECT result FROM results
+#                     WHERE topic=(SELECT id FROM topics WHERE topic = '{topic}'
+#                     AND reagent=(SELECT id FROM reagents WHERE reagent =
+#                     '{reagent}'))""").fetchall()
+#         if len(result) == 0:
+#             self.result.setText('Реакция не идет')
+#         else:
+#             self.result.setText(result[0][0])
+#         con.close()
 
 
 def main():
